@@ -632,6 +632,13 @@ SWIFT_CLASS_NAMED("InternalInterface")
 + (void)appendLogHeader:(NSString * _Nonnull)header;
 @end
 
+typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10MaintenanceInformationType, "MaintenanceInformationType", open) {
+  STARIO10MaintenanceInformationTypeThermalHeadEnergizeCount SWIFT_COMPILE_NAME("thermalHeadEnergizeCount") = 0,
+  STARIO10MaintenanceInformationTypeLineFeedMotorDistanceDots SWIFT_COMPILE_NAME("lineFeedMotorDistanceDots") = 1,
+  STARIO10MaintenanceInformationTypeCutterDriveCount SWIFT_COMPILE_NAME("cutterDriveCount") = 2,
+  STARIO10MaintenanceInformationTypePowerOnTimeMin SWIFT_COMPILE_NAME("powerOnTimeMin") = 3,
+};
+
 SWIFT_CLASS("_TtCC19StarIO10ReactNative16StarXpandCommand13MelodySpeaker")
 @interface MelodySpeaker : NSObject
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
@@ -1329,6 +1336,10 @@ typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10ErrorCode, "StarIO10ErrorCode", open
   STARIO10ErrorCodeInvalidPassword SWIFT_COMPILE_NAME("invalidPassword") = 4000,
   STARIO10ErrorCodeNeedToChangePassword SWIFT_COMPILE_NAME("needToChangePassword") = 4001,
   STARIO10ErrorCodeJsonFormatError SWIFT_COMPILE_NAME("jsonFormatError") = 5000,
+  STARIO10ErrorCodeJsonInvalidIterator SWIFT_COMPILE_NAME("jsonInvalidIterator") = 5001,
+  STARIO10ErrorCodeJsonTypeError SWIFT_COMPILE_NAME("jsonTypeError") = 5002,
+  STARIO10ErrorCodeJsonOutOfRange SWIFT_COMPILE_NAME("jsonOutOfRange") = 5003,
+  STARIO10ErrorCodeJsonOtherError SWIFT_COMPILE_NAME("jsonOtherError") = 5004,
   STARIO10ErrorCodeStarConfigurationFormatError SWIFT_COMPILE_NAME("starConfigurationFormatError") = 6000,
   STARIO10ErrorCodeStarConfigurationParameterError SWIFT_COMPILE_NAME("starConfigurationParameterError") = 6001,
   STARIO10ErrorCodeStarConfigurationSpecifiedFileError SWIFT_COMPILE_NAME("starConfigurationSpecifiedFileError") = 6002,
@@ -1505,9 +1516,11 @@ typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarPrinterModel, "StarPrinterModel"
   STARIO10StarPrinterModelmC_Connect_Drawer SWIFT_COMPILE_NAME("mC_Connect_Drawer") = 28,
 };
 
+@class STARIO10StarPrinterSettingMaintenance;
 SWIFT_CLASS_NAMED("StarPrinterSetting")
 @interface STARIO10StarPrinterSetting : NSObject
 @property (nonatomic, readonly, strong) STARIO10StarPrinterSettingFirmware * _Nullable firmware;
+@property (nonatomic, readonly, strong) STARIO10StarPrinterSettingMaintenance * _Nullable maintenance;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
@@ -1526,6 +1539,17 @@ SWIFT_CLASS_NAMED("StarPrinterSettingFirmware")
 - (void)getCurrentVersionWithCompletion:(void (^ _Nonnull)(NSString * _Nullable, NSError * _Nullable))completion;
 - (void)checkVersionsWithCompletion:(void (^ _Nonnull)(NSError * _Nullable))completion;
 - (void)updateWithCompletion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+@end
+
+SWIFT_CLASS_NAMED("StarPrinterSettingMaintenance")
+@interface STARIO10StarPrinterSettingMaintenance : NSObject
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+@interface STARIO10StarPrinterSettingMaintenance (SWIFT_EXTENSION(StarIO10ReactNative))
+- (void)getInformationWithCompletion:(void (^ _Nonnull)(NSDictionary<NSNumber *, NSNumber *> * _Nullable, NSError * _Nullable))completion;
+- (void)resetInformation:(NSArray<NSNumber *> * _Nonnull)typeValues completion:(void (^ _Nonnull)(NSError * _Nullable))completion;
 @end
 
 SWIFT_CLASS_NAMED("StarPrinterStatus")
@@ -2480,6 +2504,13 @@ SWIFT_CLASS_NAMED("InternalInterface")
 + (void)appendLogHeader:(NSString * _Nonnull)header;
 @end
 
+typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10MaintenanceInformationType, "MaintenanceInformationType", open) {
+  STARIO10MaintenanceInformationTypeThermalHeadEnergizeCount SWIFT_COMPILE_NAME("thermalHeadEnergizeCount") = 0,
+  STARIO10MaintenanceInformationTypeLineFeedMotorDistanceDots SWIFT_COMPILE_NAME("lineFeedMotorDistanceDots") = 1,
+  STARIO10MaintenanceInformationTypeCutterDriveCount SWIFT_COMPILE_NAME("cutterDriveCount") = 2,
+  STARIO10MaintenanceInformationTypePowerOnTimeMin SWIFT_COMPILE_NAME("powerOnTimeMin") = 3,
+};
+
 SWIFT_CLASS("_TtCC19StarIO10ReactNative16StarXpandCommand13MelodySpeaker")
 @interface MelodySpeaker : NSObject
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
@@ -3177,6 +3208,10 @@ typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10ErrorCode, "StarIO10ErrorCode", open
   STARIO10ErrorCodeInvalidPassword SWIFT_COMPILE_NAME("invalidPassword") = 4000,
   STARIO10ErrorCodeNeedToChangePassword SWIFT_COMPILE_NAME("needToChangePassword") = 4001,
   STARIO10ErrorCodeJsonFormatError SWIFT_COMPILE_NAME("jsonFormatError") = 5000,
+  STARIO10ErrorCodeJsonInvalidIterator SWIFT_COMPILE_NAME("jsonInvalidIterator") = 5001,
+  STARIO10ErrorCodeJsonTypeError SWIFT_COMPILE_NAME("jsonTypeError") = 5002,
+  STARIO10ErrorCodeJsonOutOfRange SWIFT_COMPILE_NAME("jsonOutOfRange") = 5003,
+  STARIO10ErrorCodeJsonOtherError SWIFT_COMPILE_NAME("jsonOtherError") = 5004,
   STARIO10ErrorCodeStarConfigurationFormatError SWIFT_COMPILE_NAME("starConfigurationFormatError") = 6000,
   STARIO10ErrorCodeStarConfigurationParameterError SWIFT_COMPILE_NAME("starConfigurationParameterError") = 6001,
   STARIO10ErrorCodeStarConfigurationSpecifiedFileError SWIFT_COMPILE_NAME("starConfigurationSpecifiedFileError") = 6002,
@@ -3353,9 +3388,11 @@ typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarPrinterModel, "StarPrinterModel"
   STARIO10StarPrinterModelmC_Connect_Drawer SWIFT_COMPILE_NAME("mC_Connect_Drawer") = 28,
 };
 
+@class STARIO10StarPrinterSettingMaintenance;
 SWIFT_CLASS_NAMED("StarPrinterSetting")
 @interface STARIO10StarPrinterSetting : NSObject
 @property (nonatomic, readonly, strong) STARIO10StarPrinterSettingFirmware * _Nullable firmware;
+@property (nonatomic, readonly, strong) STARIO10StarPrinterSettingMaintenance * _Nullable maintenance;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
@@ -3374,6 +3411,17 @@ SWIFT_CLASS_NAMED("StarPrinterSettingFirmware")
 - (void)getCurrentVersionWithCompletion:(void (^ _Nonnull)(NSString * _Nullable, NSError * _Nullable))completion;
 - (void)checkVersionsWithCompletion:(void (^ _Nonnull)(NSError * _Nullable))completion;
 - (void)updateWithCompletion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+@end
+
+SWIFT_CLASS_NAMED("StarPrinterSettingMaintenance")
+@interface STARIO10StarPrinterSettingMaintenance : NSObject
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+@interface STARIO10StarPrinterSettingMaintenance (SWIFT_EXTENSION(StarIO10ReactNative))
+- (void)getInformationWithCompletion:(void (^ _Nonnull)(NSDictionary<NSNumber *, NSNumber *> * _Nullable, NSError * _Nullable))completion;
+- (void)resetInformation:(NSArray<NSNumber *> * _Nonnull)typeValues completion:(void (^ _Nonnull)(NSError * _Nullable))completion;
 @end
 
 SWIFT_CLASS_NAMED("StarPrinterStatus")

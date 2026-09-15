@@ -15,6 +15,8 @@ NSDictionary<NSNumber *, NSString *> *kSpoolJobReceivedInterfaceDictionary;
 
 NSDictionary<NSNumber *, NSString *> *kFirmwareUpdateStepDictionary;
 
+NSDictionary<NSNumber *, NSString *> *kMaintenanceInformationTypeDictionary;
+
 NSDictionary<NSNumber *, NSString *> *kPresenterLEDTypeDictionary;
 NSDictionary<NSNumber *, NSString *> *kBezelLEDTypeDictionary;
 NSDictionary<NSNumber *, NSString *> *kPrinterAlignmentDictionary;
@@ -130,6 +132,13 @@ NSDictionary<NSNumber *, NSString *> *kDisplayInternationalCharacterTypeDictiona
         kFirmwareUpdateStepDictionary = @{
             @(STARIO10FirmwareUpdateStepTransmitting): @"Transmitting",
             @(STARIO10FirmwareUpdateStepDownloading): @"Downloading",
+        };
+        
+        kMaintenanceInformationTypeDictionary = @{
+            @(STARIO10MaintenanceInformationTypeThermalHeadEnergizeCount): @"ThermalHeadEnergizeCount",
+            @(STARIO10MaintenanceInformationTypeLineFeedMotorDistanceDots): @"LineFeedMotorDistanceDots",
+            @(STARIO10MaintenanceInformationTypeCutterDriveCount): @"CutterDriveCount",
+            @(STARIO10MaintenanceInformationTypePowerOnTimeMin): @"PowerOnTimeMin",
         };
         
         kPresenterLEDTypeDictionary = @{
@@ -477,6 +486,22 @@ NSDictionary<NSNumber *, NSString *> *kDisplayInternationalCharacterTypeDictiona
 + (NSString *)toStringFromFirmwareUpdateStep:(STARIO10FirmwareUpdateStep)value
 {
     return kFirmwareUpdateStepDictionary[@(value)];
+}
+
++ (NSString *)toStringFromMaintenanceInformationType:(STARIO10MaintenanceInformationType)value
+{
+    return kMaintenanceInformationTypeDictionary[@(value)];
+}
+
++ (NSInteger)toMaintenanceInformationTypeValue:(NSString *)value
+{
+    NSArray<NSNumber *> *allKeys = [kMaintenanceInformationTypeDictionary allKeysForObject:value];
+
+    if (allKeys.count == 0) {
+        return -1;
+    }
+
+    return [[allKeys objectAtIndex:0] integerValue];
 }
 
 + (NSArray<NSNumber *> *)toPrinterCJKCharacterPriorityTypes:(nonnull NSArray<NSString *> *)types

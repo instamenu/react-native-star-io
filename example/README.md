@@ -11,6 +11,8 @@ These samples includes following functions.
 * [discovery](samples/discovery/App.tsx) - To discover devices
 * [status](samples/status/App.tsx) - To get the status of the device
 * [monitor](samples/monitor/App.tsx) - To monitor the device
+* [firmware update](samples/firmware_update/App.tsx) - To update the firmware of the printer
+* [maintenance](samples/maintenance/App.tsx) - To get and reset the maintenance information of the printer
 
 ## Usage
 
@@ -35,12 +37,3 @@ npx react-native run-ios
 ```
 npx react-native run-android
 ```
-
-### Windows
-
-```
-cp .\windows\package.json .\package.json
-npx react-native run-windows
-```
-
-> :warning: If the build fails, please refer to "What should I do when Windows sample app build fails" on [this page](https://www.star-m.jp/products/s_print/sdk/react-native-star-io10/manual/en/qanda.html).

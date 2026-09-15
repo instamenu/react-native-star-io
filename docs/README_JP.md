@@ -31,8 +31,7 @@ StarIO10ライブラリが提供するAPIの一部は、実行時にユーザー
 | Platform | OS Version | Arch | Test Environment[*3](#TestEnvironment) |
 | --- | --- | --- | --- |
 | iOS | iOS 15.1 以降 | 実機: arm64<br> シミュレータ: x86_64, arm64 | Xcode 26.4 |
-| Android | Android 8.0 以降[*1](#AndroidBle) [*2](#OsVersion) | arm64-v8a, armeabi-v7a, x86, x86_64 | Gradle 9.3.1, AGP 8.12.0 |
-| Windows | Windows 11 24H2 以降 | x64 | Visual Studio 2022 |
+| Android | Android 8.0 以降[*1](#AndroidBle) [*2](#OsVersion) | arm64-v8a, armeabi-v7a, x86, x86_64 | Gradle 9.4.1, AGP 9.2.1 |
 
 <a id="AndroidBle"></a>*1 Bluetooth Low Energyインターフェースは、Android 12.0以降でのみサポートしています。<br>
 <a id="OsVersion"></a>*2 動作確認は Android 11 以降で実施しています。Android 8 ~ 10 については、設計上動作可能です。<br>
@@ -41,16 +40,19 @@ StarIO10ライブラリが提供するAPIの一部は、実行時にユーザー
 #### Android 17における注意点
 
 - react-native-star-io10に含まれるデバイス制御用のライブラリは、targetSdkVersionおよびcompileSdkVersionが37 (Android 17) に設定されています。  
-そのため、アプリケーション側のcompileSdkVersionも37以上を指定する必要があります。 [参考](../example/android/build.gradle)
-- Android 17以降をターゲットとするアプリでは、ローカルネットワーク通信のために`ACCESS_LOCAL_NETWORK`権限が必要となりました。 [ローカル ネットワークへのアクセス権](https://developer.android.com/privacy-and-security/local-network-permission?hl=ja)
-しかし、React Native V0.86.0 (2026/6/30時点の最新版) では、上記権限がまだサポートされておりません。 [PermissionsAndroid](https://reactnative.dev/docs/permissionsandroid)  
+そのため、アプリケーション側のcompileSdkVersionも37以上を指定する必要があります。React Native V0.87.0以降ではcompileSdkVersionが既定で37に設定されているため、対応は不要です。 [参考](../example/android/build.gradle)
+- Android 17以降をターゲットとするアプリでは、ローカルネットワーク通信のために`ACCESS_LOCAL_NETWORK`権限が必要となりました。 [ローカル ネットワークへのアクセス権](https://developer.android.com/privacy-and-security/local-network-permission?hl=ja)  
 本サンプルアプリのように`付近のデバイス`権限を要求するアプリにて、`付近のデバイス`権限が許可されていない状態では、LAN通信が正しく行えなくなることにご注意ください。
 
 #### Windowsのサポート終了について
 
-react-native-star-io10によるWindows (UWP) プラットフォームのサポートは、本バージョンにて終了予定です。次の機能アップデートリリースで削除されます。詳細は[こちら](https://github.com/star-micronics/react-native-star-io10/wiki/FAQ#windows-regarding-the-discontinuation-of-windows-uwp-support)をご参照ください。
+react-native-star-io10によるWindows (UWP) プラットフォームのサポートは、V1.14.0にて終了し、関連コードは削除されました。詳細は[こちら](https://github.com/star-micronics/react-native-star-io10/wiki/FAQ#windows-regarding-the-discontinuation-of-windows-uwp-support)をご参照ください。
 
 新しいWindows用SDKとして、[StarXpand SDK for Windows](https://github.com/star-micronics/Starlabs-StarXpand-SDK-Windows) を提供しています。これはWindows .NET (Desktop) プラットフォームをターゲットとするSDKです。
+
+Windows (UWP) をサポートしている最終バージョンであるreact-native-star-io10 V1.13.0をご利用の場合は、以下のアーカイブしたマニュアルをご参照ください。
+
+[V1.13.0のマニュアル](https://star-m.jp/products/s_print/archive/react-native-star-io10/manual/1_13_0/ja/index.html)
 
 ## 導入
 
@@ -240,45 +242,6 @@ Bluetooth Low Energy通信を行う場合、ペアリングを行う必要があ
 
 Androidデバイスがサイレントモードの場合、ペアリングが正常に行えない場合があります。ペアリングを行う際は、サイレントモードを解除してください。
 
-### Windows
-
-- 機能を`Package.appxmanifest`に追加してください。
-  - Bluetooth
-  - インターネット(クライアント)
-  - プライベート ネットワーク (クライアントとサーバー)
-- プロジェクトの「参照」に"Visual C++ 2015-2019 UWP Desktop Runtime for native apps"を追加してください。
-- Bluetooth Low Energyプリンターを使用し、Bluetoothドングルを使用する場合、ドングルの製造元が提供するドライバーをインストールしてください。
-
-#### mC-Connect Drawer (USB接続) を利用する場合
-
-[サンプルプロジェクト](../example/windows/example/Package.appxmanifest)を参考に、`Package.appxmanifest`に以下の記述を追加してください.
-
-```
-  <Capabilities>
-    <!-- USB CDC Device -->
-    <DeviceCapability Name="serialcommunication">
-      <Device Id="any">
-        <Function Type="name:serialPort" />
-      </Device>
-    </DeviceCapability>
-  </Capabilities>
-```
-
-#### CD5 (USB接続) を利用する場合
-
-[サンプルプロジェクト](../example/windows/example/Package.appxmanifest)を参考に、`Package.appxmanifest`に以下の記述を追加してください。  
-
-```
-  <Capabilities>
-    <!-- HID Device -->
-    <DeviceCapability Name="humaninterfacedevice">
-      <Device Id="any">
-        <Function Type="usage:0001 0000" />
-      </Device>
-    </DeviceCapability>
-  </Capabilities>
-```
-
 ## 制限事項
 
 ### Android端末を使用する場合、URLで指定した画像が低い解像度で印字されることがある
@@ -316,6 +279,8 @@ StarXpand SDKにはプリンターと組み合わせて動作を確認できる[
 #### 7. [プリンターステータスの監視](#MonitorPrinter)
 
 #### 8. [プリンターファームウェアの更新](https://star-m.jp/products/s_print/sdk/react-native-star-io10/manual/ja/fw-update.html)
+
+#### 9. [メンテナンス情報の取得](#Maintenance)
 
 <a id="GetPrinterStatus"></a>
 ### Get printer status
@@ -387,6 +352,43 @@ async monitor(): Promise<void> {
     }
 }
 ```
+
+<a id="Maintenance"></a>
+### Get maintenance information
+
+```typescript
+async getMaintenanceInformation(): Promise<void> {
+    // Specify your printer connection settings.
+    var settings = new StarConnectionSettings();
+    settings.interfaceType = InterfaceType.Lan;
+    settings.identifier = '00:11:62:00:00:00';
+    var printer = new StarPrinter(settings);
+
+    try {
+        // Connect to the printer.
+        await printer.open();
+
+        // Get maintenance information.
+        // Information not supported by the printer is omitted from the returned data.
+        var maintenance = printer.setting?.maintenance;
+        if (maintenance != undefined) {
+            var information = await maintenance.getInformation();
+            console.log(information);
+        }
+    }
+    catch(error) {
+        // Error.
+        console.log(error);
+    }
+    finally {
+        // Disconnect from the printer and dispose object.
+        await printer.close();
+        await printer.dispose();
+    }
+}
+```
+
+リセット可能なメンテナンス情報は、`resetInformation()`関数にてリセットできます。使い方は[サンプルコード](../example/samples/maintenance/App.tsx)および[APIリファレンス](https://star-m.jp/products/s_print/sdk/react-native-star-io10/manual/ja/api-reference/star-printer-setting-maintenance/index.html)を参照してください。
 
 ## Copyright
 

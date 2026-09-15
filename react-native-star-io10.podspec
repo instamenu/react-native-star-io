@@ -19,11 +19,17 @@ Pod::Spec.new do |s|
   s.source_files = "ios/**/*.{h,m,swift}"
   s.requires_arc = true
 
-  s.dependency "React"
-  s.pod_target_xcconfig = { 
+  if defined?(install_modules_dependencies()) != nil
+    install_modules_dependencies(s)
+  else
+    s.dependency "React-Core"
+  end
+  s.libraries    = "c++"
+  s.pod_target_xcconfig = {
     'EXCLUDED_ARCHS[sdk=iphoneos*]' => 'x86_64',
     'EXCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]' => '$(PODS_TARGET_SRCROOT)/ios/libs/StarIO10ReactNative.xcframework/ios-arm64_x86_64-simulator/*.*',
-    'FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*]' => '$(SRCROOT)/libs/** $(PODS_TARGET_SRCROOT)/ios/libs $(PODS_TARGET_SRCROOT)/ios/libs/StarIO10ReactNative.xcframework/ios-arm64_arm64e',
+    'FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*]' => '$(inherited) $(SRCROOT)/libs/** $(PODS_TARGET_SRCROOT)/ios/libs $(PODS_TARGET_SRCROOT)/ios/libs/StarIO10ReactNative.xcframework/ios-arm64_arm64e',
+    'LIBRARY_SEARCH_PATHS' => '$(inherited) "$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)" "/usr/lib/swift"',
   }
   
   header_search_path_expo = [
@@ -41,16 +47,23 @@ Pod::Spec.new do |s|
   ]
 
   if ENV['USE_FRAMEWORKS']
+    existing_xcconfig = s.to_hash["pod_target_xcconfig"] || {}
+    existing_xcconfig.delete('EXCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]')
+    existing_headers = existing_xcconfig["HEADER_SEARCH_PATHS"] || ""
+    existing_ldflags = existing_xcconfig["OTHER_LDFLAGS"] || "$(inherited)"
+
     if ENV['EXPO_MAIN_PROJECT_PATH']
-      s.pod_target_xcconfig  = {
-        "HEADER_SEARCH_PATHS" => header_search_path_expo.join(" "),
+      s.pod_target_xcconfig = existing_xcconfig.merge({
+        "HEADER_SEARCH_PATHS" => "#{existing_headers} #{header_search_path_expo.join(" ")}".strip,
         "EXCLUDED_SOURCE_FILE_NAMES" => exclude_source_file_name.join(" "),
-      }
+        "OTHER_LDFLAGS" => "#{existing_ldflags} -ObjC",
+      })
     else
-      s.pod_target_xcconfig  = {
-        "HEADER_SEARCH_PATHS" => header_search_path_react_native.join(" "),
+      s.pod_target_xcconfig = existing_xcconfig.merge({
+        "HEADER_SEARCH_PATHS" => "#{existing_headers} #{header_search_path_react_native.join(" ")}".strip,
         "EXCLUDED_SOURCE_FILE_NAMES" => exclude_source_file_name.join(" "),
-      }
+        "OTHER_LDFLAGS" => "#{existing_ldflags} -ObjC",
+      })
     end
   end
 

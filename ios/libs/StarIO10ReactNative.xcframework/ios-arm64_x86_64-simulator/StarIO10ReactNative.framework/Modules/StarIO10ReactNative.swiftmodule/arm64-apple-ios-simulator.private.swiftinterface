@@ -9,6 +9,7 @@ import Foundation
 import Network
 @_exported import StarIO10ReactNative
 import StarIO10ReactNative.StarLogger
+import StarIO10ReactNative.StarPRNTCommandUtilWrapper
 import StarIO10ReactNative.StarXpandCommandParserWrapper
 import Swift
 import UIKit
@@ -146,6 +147,7 @@ extension StarIO10ReactNative.StarXpandCommand {
 }
 @_hasMissingDesignatedInitializers @objc(STARIO10StarPrinterSetting) public class StarPrinterSetting : ObjectiveC.NSObject {
   @objc final public let firmware: StarIO10ReactNative.StarPrinterSettingFirmware?
+  @objc final public let maintenance: StarIO10ReactNative.StarPrinterSettingMaintenance?
   @objc deinit
 }
 extension StarIO10ReactNative.StarXpandCommand {
@@ -1519,6 +1521,10 @@ extension StarIO10ReactNative.StarXpandCommand.Printer {
   @objc(STARIO10ErrorCodeInvalidPassword) case invalidPassword = 4000
   @objc(STARIO10ErrorCodeNeedToChangePassword) case needToChangePassword = 4001
   @objc(STARIO10ErrorCodeJsonFormatError) case jsonFormatError = 5000
+  @objc(STARIO10ErrorCodeJsonInvalidIterator) case jsonInvalidIterator = 5001
+  @objc(STARIO10ErrorCodeJsonTypeError) case jsonTypeError = 5002
+  @objc(STARIO10ErrorCodeJsonOutOfRange) case jsonOutOfRange = 5003
+  @objc(STARIO10ErrorCodeJsonOtherError) case jsonOtherError = 5004
   @objc(STARIO10ErrorCodeStarConfigurationFormatError) case starConfigurationFormatError = 6000
   @objc(STARIO10ErrorCodeStarConfigurationParameterError) case starConfigurationParameterError = 6001
   @objc(STARIO10ErrorCodeStarConfigurationSpecifiedFileError) case starConfigurationSpecifiedFileError = 6002
@@ -1815,6 +1821,36 @@ extension StarIO10ReactNative.StarXpandCommand {
     @objc deinit
   }
 }
+@objc(STARIO10MaintenanceInformationType) public enum MaintenanceInformationType : Swift.Int, Swift.CustomStringConvertible, Swift.Sendable, Swift.CaseIterable {
+  @objc(STARIO10MaintenanceInformationTypeThermalHeadEnergizeCount) case thermalHeadEnergizeCount
+  @objc(STARIO10MaintenanceInformationTypeLineFeedMotorDistanceDots) case lineFeedMotorDistanceDots
+  @objc(STARIO10MaintenanceInformationTypeCutterDriveCount) case cutterDriveCount
+  @objc(STARIO10MaintenanceInformationTypePowerOnTimeMin) case powerOnTimeMin
+  public var description: Swift.String {
+    get
+  }
+  public init?(rawValue: Swift.Int)
+  public typealias AllCases = [StarIO10ReactNative.MaintenanceInformationType]
+  public typealias RawValue = Swift.Int
+  nonisolated public static var allCases: [StarIO10ReactNative.MaintenanceInformationType] {
+    get
+  }
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers @objc(STARIO10StarPrinterSettingMaintenance) public class StarPrinterSettingMaintenance : ObjectiveC.NSObject {
+  @objc deinit
+}
+@available(iOS 13.0, *)
+extension StarIO10ReactNative.StarPrinterSettingMaintenance {
+  public func getInformation() async throws -> [StarIO10ReactNative.MaintenanceInformationType : Swift.Int]
+  public func resetInformation(_ types: [StarIO10ReactNative.MaintenanceInformationType]) async throws
+}
+@objc extension StarIO10ReactNative.StarPrinterSettingMaintenance {
+  @objc dynamic public func getInformation(completion: @escaping ([Swift.Int : Swift.Int]?, (any Swift.Error)?) -> Swift.Void)
+  @objc dynamic public func resetInformation(_ typeValues: [Swift.Int], completion: @escaping ((any Swift.Error)?) -> Swift.Void)
+}
 extension StarIO10ReactNative.StarPrinterEmulation : Swift.Equatable {}
 extension StarIO10ReactNative.StarPrinterEmulation : Swift.Hashable {}
 extension StarIO10ReactNative.StarPrinterEmulation : Swift.RawRepresentable {}
@@ -1934,3 +1970,6 @@ extension StarIO10ReactNative.StarXpandCommand.Printer.CutType : Swift.RawRepres
 extension StarIO10ReactNative.StarXpandCommand.Printer.CJKCharacterType : Swift.Equatable {}
 extension StarIO10ReactNative.StarXpandCommand.Printer.CJKCharacterType : Swift.Hashable {}
 extension StarIO10ReactNative.StarXpandCommand.Printer.CJKCharacterType : Swift.RawRepresentable {}
+extension StarIO10ReactNative.MaintenanceInformationType : Swift.Equatable {}
+extension StarIO10ReactNative.MaintenanceInformationType : Swift.Hashable {}
+extension StarIO10ReactNative.MaintenanceInformationType : Swift.RawRepresentable {}

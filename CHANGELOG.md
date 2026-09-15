@@ -2,6 +2,28 @@
 
 # Change Log
 
+## 1.14.0 (2026/9/15)
+
+#### Added
+
+* Added API to retrieve and reset the maintenance information of the printer.
+  * `maintenance` property of `StarPrinterSetting`
+  * `StarPrinterSettingMaintenance`
+  * `MaintenanceInformationType`
+
+#### Changed
+
+* Changed the dependency specification for `react-native-star-io10` in the sample app from `file:` to `link:` .
+
+#### Fixed
+
+* Fixed a potential build error caused by the `buffer` module being resolved only transitively. `buffer` is now explicitly included in the package dependencies.
+* Fixed an issue where the library failed to build when `verbatimModuleSyntax` is enabled, by using a type-only import for `EventSubscription`. [#156](https://github.com/star-micronics/react-native-star-io10/issues/156)
+
+#### Breaking Changes
+
+* Removed Windows (UWP) support and the related code from react-native-star-io10. Please refer to the details [here](https://github.com/star-micronics/react-native-star-io10/wiki/FAQ#windows-regarding-the-discontinuation-of-windows-uwp-support). We offer the [StarXpand SDK for Windows](https://github.com/star-micronics/Starlabs-StarXpand-SDK-Windows) as the new SDK for Windows.
+
 ## 1.13.0 (2026/7/10)
 
 #### Added

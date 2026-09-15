@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0C80B921A6F3F58F76C31292 /* libPods-example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-example.a */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		2CD3D6D82FFB6CF90026A1A3 /* signature.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CD3D6D72FFB6CF90026A1A3 /* signature.png */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		889D26632524548F00AA5D07 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
@@ -23,7 +24,6 @@
 		DD56B28B2B70879D0047C348 /* sale_50off_background.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56B2812B70879D0047C348 /* sale_50off_background.png */; };
 		DD56B28C2B70879D0047C348 /* tamper_proof_label_checked.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56B2822B70879D0047C348 /* tamper_proof_label_checked.png */; };
 		DD56B28D2B70879D0047C348 /* japanese_food_label_lunch_box_plastic.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56B2832B70879D0047C348 /* japanese_food_label_lunch_box_plastic.png */; };
-		DDCDFE632B4E1641009A001A /* signature.png in Resources */ = {isa = PBXBuildFile; fileRef = DDCDFE622B4E1641009A001A /* signature.png */; };
 		E3522EC225F6F659008B0731 /* logo_01.png in Resources */ = {isa = PBXBuildFile; fileRef = E3522EC125F6F659008B0731 /* logo_01.png */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +32,7 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = example/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = example/Info.plist; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = example/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		2CD3D6D72FFB6CF90026A1A3 /* signature.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = signature.png; path = example/signature.png; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-example.debug.xcconfig"; path = "Target Support Files/Pods-example/Pods-example.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-example.release.xcconfig"; path = "Target Support Files/Pods-example/Pods-example.release.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -48,7 +49,6 @@
 		DD56B2812B70879D0047C348 /* sale_50off_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sale_50off_background.png; path = example/sale_50off_background.png; sourceTree = "<group>"; };
 		DD56B2822B70879D0047C348 /* tamper_proof_label_checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tamper_proof_label_checked.png; path = example/tamper_proof_label_checked.png; sourceTree = "<group>"; };
 		DD56B2832B70879D0047C348 /* japanese_food_label_lunch_box_plastic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = japanese_food_label_lunch_box_plastic.png; path = example/japanese_food_label_lunch_box_plastic.png; sourceTree = "<group>"; };
-		DDCDFE622B4E1641009A001A /* signature.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = signature.png; path = ../windows/example/Assets/signature.png; sourceTree = "<group>"; };
 		E3522EC125F6F659008B0731 /* logo_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_01.png; path = example/logo_01.png; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -69,7 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				E3522EC125F6F659008B0731 /* logo_01.png */,
-				DDCDFE622B4E1641009A001A /* signature.png */,
+				2CD3D6D72FFB6CF90026A1A3 /* signature.png */,
 				DD56B2822B70879D0047C348 /* tamper_proof_label_checked.png */,
 				DD56B2832B70879D0047C348 /* japanese_food_label_lunch_box_plastic.png */,
 				DD56B27D2B70879D0047C348 /* japanese_food_label_cake_plastic.png */,
@@ -202,7 +202,6 @@
 				DD56B2892B70879D0047C348 /* cafe_template_coffee_cup.png in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				DD56B2872B70879D0047C348 /* japanese_food_label_cake_plastic.png in Resources */,
-				DDCDFE632B4E1641009A001A /* signature.png in Resources */,
 				DD56B2842B70879D0047C348 /* pharmacy_medication1_logo.png in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				DD56B28C2B70879D0047C348 /* tamper_proof_label_checked.png in Resources */,
@@ -210,6 +209,7 @@
 				DD56B28D2B70879D0047C348 /* japanese_food_label_lunch_box_plastic.png in Resources */,
 				E3522EC225F6F659008B0731 /* logo_01.png in Resources */,
 				DD56B28A2B70879D0047C348 /* visitor_label_user_profile_picture.png in Resources */,
+				2CD3D6D82FFB6CF90026A1A3 /* signature.png in Resources */,
 				DD56B28B2B70879D0047C348 /* sale_50off_background.png in Resources */,
 				DD56B2862B70879D0047C348 /* cleanedsanitised_hand.png in Resources */,
 				CC79BA935D7EE43674BA1579 /* PrivacyInfo.xcprivacy in Resources */,
@@ -320,7 +320,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.13.0;
+				MARKETING_VERSION = 1.14.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -351,7 +351,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.13.0;
+				MARKETING_VERSION = 1.14.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -428,6 +428,10 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-DRCT_REMOVE_LEGACY_ARCH=1",
+				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DFOLLY_NO_CONFIG",
@@ -435,14 +439,17 @@
 					"-DFOLLY_USE_LIBCPP=1",
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
+					"-DRCT_REMOVE_LEGACY_ARCH=1",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					" ",
 				);
+				PODFILE_DIR = "$(SRCROOT)";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ENABLE_EXPLICIT_MODULES = NO;
 				USE_HERMES = true;
 			};
 			name = Debug;
@@ -500,6 +507,10 @@
 					"\"$(inherited)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-DRCT_REMOVE_LEGACY_ARCH=1",
+				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DFOLLY_NO_CONFIG",
@@ -507,13 +518,16 @@
 					"-DFOLLY_USE_LIBCPP=1",
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
+					"-DRCT_REMOVE_LEGACY_ARCH=1",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					" ",
 				);
+				PODFILE_DIR = "$(SRCROOT)";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				SWIFT_ENABLE_EXPLICIT_MODULES = NO;
 				USE_HERMES = true;
 				VALIDATE_PRODUCT = YES;
 			};

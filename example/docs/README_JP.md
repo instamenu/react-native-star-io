@@ -11,6 +11,8 @@
 * [検索](../samples/discovery/App.tsx) - デバイスの検索
 * [ステータス](../samples/status/App.tsx) - デバイスのステータスを取得
 * [監視](../samples/monitor/App.tsx) - デバイスを監視
+* [ファームウェア更新](../samples/firmware_update/App.tsx) - プリンターのファームウェアを更新
+* [メンテナンス情報](../samples/maintenance/App.tsx) - プリンターのメンテナンス情報の取得と初期化
 
 ## 使用方法
 
@@ -35,12 +37,3 @@ npx react-native run-ios
 ```
 npx react-native run-android
 ```
-
-### Windows
-
-```
-cp .\windows\package.json .\package.json
-npx react-native run-windows
-```
-
-> :warning: ビルドに失敗する場合、[こちらのページ](https://www.star-m.jp/products/s_print/sdk/react-native-star-io10/manual/ja/qanda.html)の「Windowsサンプルアプリのビルドに失敗します」をご参照ください。

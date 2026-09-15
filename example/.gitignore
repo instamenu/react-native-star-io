@@ -32,9 +32,6 @@ local.properties
 *.hprof
 .kotlin/
 
-# Windows
-windows/example/packages.lock.json
-
 # Visual Studio Code
 #
 .vscode/

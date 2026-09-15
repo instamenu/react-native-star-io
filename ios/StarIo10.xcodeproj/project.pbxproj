@@ -10,6 +10,7 @@
 		2C5DDBBF2DE7EB920024B773 /* StarPrinterSettingFirmwareWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5DDBBE2DE7EB920024B773 /* StarPrinterSettingFirmwareWrapper.m */; };
 		2C5DDBC32DE7EBCA0024B773 /* StarPrinterSettingWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5DDBC22DE7EBCA0024B773 /* StarPrinterSettingWrapper.m */; };
 		2C9FC5AA2DFFFEB40097A034 /* StarIO10DiagInfoUploadWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9FC5A82DFFFEB40097A034 /* StarIO10DiagInfoUploadWrapper.m */; };
+		58623959AC60D5F44B6BBC5A /* StarPrinterSettingMaintenanceWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 05076B139C1A330C9978C4A5 /* StarPrinterSettingMaintenanceWrapper.m */; };
 		61961E142EC578A600C58761 /* StarIO10ReactNative.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61961E132EC578A600C58761 /* StarIO10ReactNative.xcframework */; };
 		8893EDD925D3C138006114B2 /* StarIO10LoggerWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8893EDD725D3C138006114B2 /* StarIO10LoggerWrapper.m */; };
 		B3E7B58A1CC2AC0600A0062D /* StarIo10.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* StarIo10.m */; };
@@ -42,6 +43,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		05076B139C1A330C9978C4A5 /* StarPrinterSettingMaintenanceWrapper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = StarPrinterSettingMaintenanceWrapper.m; sourceTree = "<group>"; };
 		134814201AA4EA6300B7C361 /* libStarIo10.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libStarIo10.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C5DDBBD2DE7EB6E0024B773 /* StarPrinterSettingFirmwareWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StarPrinterSettingFirmwareWrapper.h; sourceTree = "<group>"; };
 		2C5DDBBE2DE7EB920024B773 /* StarPrinterSettingFirmwareWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StarPrinterSettingFirmwareWrapper.m; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 		88AB871A251B246400245D2A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B3E7B5881CC2AC0600A0062D /* StarIo10.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarIo10.h; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* StarIo10.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarIo10.m; sourceTree = "<group>"; };
+		D382F843DD477CD349119DF7 /* StarPrinterSettingMaintenanceWrapper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = StarPrinterSettingMaintenanceWrapper.h; sourceTree = "<group>"; };
 		DD24A8652C5B9F6E009A041A /* StarIO10ErrorDetailWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StarIO10ErrorDetailWrapper.m; sourceTree = "<group>"; };
 		DD24A8672C5B9F7E009A041A /* StarIO10ErrorDetailWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StarIO10ErrorDetailWrapper.h; sourceTree = "<group>"; };
 		DD80852E28DABC8E005B3D27 /* StarSpoolJobStatusWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StarSpoolJobStatusWrapper.h; sourceTree = "<group>"; };
@@ -197,6 +200,8 @@
 				DD9C5AD928DC2BB200E6571F /* StarSpoolJobStatusListWrapper.m */,
 				DD80852E28DABC8E005B3D27 /* StarSpoolJobStatusWrapper.h */,
 				DD80852F28DABCAA005B3D27 /* StarSpoolJobStatusWrapper.m */,
+				D382F843DD477CD349119DF7 /* StarPrinterSettingMaintenanceWrapper.h */,
+				05076B139C1A330C9978C4A5 /* StarPrinterSettingMaintenanceWrapper.m */,
 			);
 			path = StarPrinter;
 			sourceTree = "<group>";
@@ -293,6 +298,7 @@
 				DD9C5ADA28DC2BB200E6571F /* StarSpoolJobStatusListWrapper.m in Sources */,
 				E3951A77254FDAA6003A9953 /* StarObjectManager.m in Sources */,
 				2C5DDBBF2DE7EB920024B773 /* StarPrinterSettingFirmwareWrapper.m in Sources */,
+				58623959AC60D5F44B6BBC5A /* StarPrinterSettingMaintenanceWrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,7 +432,7 @@
 					"$(SRCROOT)/../node_modules/react-native/**",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 1.13.0;
+				MARKETING_VERSION = 1.14.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = StarIo10;
 				SKIP_INSTALL = YES;
@@ -452,7 +458,7 @@
 					"$(SRCROOT)/../node_modules/react-native/**",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 1.13.0;
+				MARKETING_VERSION = 1.14.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = StarIo10;
 				SKIP_INSTALL = YES;

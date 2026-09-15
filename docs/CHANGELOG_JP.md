@@ -2,6 +2,28 @@
 
 # 変更履歴
 
+## 1.14.0 (2026/9/15)
+
+#### 追加
+
+* プリンターのメンテナンス情報を取得・リセットするAPIを追加
+  * `StarPrinterSetting`の`maintenance`プロパティ
+  * `StarPrinterSettingMaintenance`
+  * `MaintenanceInformationType`
+
+#### 変更
+
+* サンプルアプリの`react-native-star-io10`の依存解決を`file:`から`link:`に変更
+
+#### 修正
+
+* `buffer`モジュールが推移的にのみ解決されており、依存関係によってはビルドエラーとなる可能性があった問題を修正。`buffer`をパッケージのdependenciesに明示的に追加しました。
+* `verbatimModuleSyntax`有効時にライブラリのビルドが失敗する問題を修正（`EventSubscription`を型のみのインポートに変更） [#156](https://github.com/star-micronics/react-native-star-io10/issues/156)
+
+#### 破壊的な変更
+
+* react-native-star-io10でのWindows (UWP) サポートを終了し、関連コードを削除しました。詳細は[こちら](https://github.com/star-micronics/react-native-star-io10/wiki/FAQ#windows-regarding-the-discontinuation-of-windows-uwp-support)をご参照ください。新しいWindows用SDKとして、[StarXpand SDK for Windows](https://github.com/star-micronics/Starlabs-StarXpand-SDK-Windows) を提供しています。
+
 ## 1.13.0 (2026/7/10)
 
 #### 追加

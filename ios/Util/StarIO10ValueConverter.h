@@ -25,6 +25,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *)toStringFromFirmwareUpdateStep:(STARIO10FirmwareUpdateStep)value;
 
++ (NSString *)toStringFromMaintenanceInformationType:(STARIO10MaintenanceInformationType)value;
++ (NSInteger)toMaintenanceInformationTypeValue:(NSString *)value;
+
 + (NSArray<NSNumber *> *)toPrinterCJKCharacterPriorityTypes:(nonnull NSArray<NSString *> *)types;
 + (STARIO10StarPrinterModel)toStarPrinterModel:(NSString *)value;
 + (STARIO10InterfaceType)toInterfaceType:(NSString *)value;

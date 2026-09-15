@@ -1,19 +1,25 @@
 import {
     NativeModules,
     NativeEventEmitter,
-    EventSubscription
+    type EventSubscription
 } from 'react-native';
 
 import { NativeObject } from './NativeObject';
 import { StarPrinterSettingFirmware } from './StarPrinterSettingFirmware';
+import { StarPrinterSettingMaintenance } from './StarPrinterSettingMaintenance';
 
 export class StarPrinterSetting extends NativeObject {
 
     _printerIdentifier: string | undefined = undefined;
     _firmware: StarPrinterSettingFirmware | undefined = undefined;
+    _maintenance: StarPrinterSettingMaintenance | undefined = undefined;
 
     get firmware(): StarPrinterSettingFirmware | undefined {
         return this._firmware;
+    }
+
+    get maintenance(): StarPrinterSettingMaintenance | undefined {
+        return this._maintenance;
     }
 
     async dispose(): Promise<void> {
@@ -21,6 +27,9 @@ export class StarPrinterSetting extends NativeObject {
 
         await this._firmware?.dispose();
         this._firmware = undefined;
+
+        await this._maintenance?.dispose();
+        this._maintenance = undefined;
 
         await this._disposeNativeObject();
     }

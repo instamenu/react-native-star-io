@@ -30,8 +30,7 @@ Please refer [here](DIAG_INFO.md) for details.
 | Platform | Version | Arch | Test Environment[*3](#TestEnvironment) |
 | --- | --- | --- | --- |
 | iOS | iOS 15.1 or later | Device: arm64<br> Simulator: x86_64, arm64 | Xcode 26.4 |
-| Android | Android 8.0 or later[*1](#AndroidBle) [*2](#OsVersion) | arm64-v8a, armeabi-v7a, x86, x86_64 | Gradle 9.3.1, AGP 8.12.0 |
-| Windows | Windows 11 or later | x64 | Visual Studio 2022 |
+| Android | Android 8.0 or later[*1](#AndroidBle) [*2](#OsVersion) | arm64-v8a, armeabi-v7a, x86, x86_64 | Gradle 9.4.1, AGP 9.2.1 |
 
 <a id="AndroidBle"></a>*1 The Bluetooth Low Energy interface is only supported on Android 12.0 and later.<br>
 <a id="OsVersion"></a>*2 Testing has been performed on Android 11 or later. For Android 8.0 to 10, operation is expected to be possible on the design.<br>
@@ -40,16 +39,19 @@ Please refer [here](DIAG_INFO.md) for details.
 #### Notes for Android 17
 
 - The Android device-control library included in react-native-star-io10 is configured with targetSdkVersion and compileSdkVersion set to 37 (Android 17).  
-Therefore, your application must also set compileSdkVersion to 37 or higher. [Reference](example/android/build.gradle)
+Therefore, your application must also set compileSdkVersion to 37 or higher. In React Native v0.87.0 and later, compileSdkVersion is set to 37 by default, so no action is required. [Reference](example/android/build.gradle)
 - For apps targeting Android 17 or later, the ACCESS_LOCAL_NETWORK permission is now required for local network communication. [Local network access permission](https://developer.android.com/privacy-and-security/local-network-permission)  
-However, as of React Native v0.86.0 (latest as of 2026/6/30), this permission is not yet supported. [PermissionsAndroid](https://reactnative.dev/docs/permissionsandroid)  
 In apps like this sample app that request the `NEARBY_DEVICES` permission, please note that LAN communication may not work properly if the `NEARBY_DEVICES` permission is not granted.
 
 #### About the end of Windows support
 
-Support for the UWP platform via react-native-star-io10 is scheduled to end with this version; it will be removed in the next feature update release. Please refer to the details [here](https://github.com/star-micronics/react-native-star-io10/wiki/FAQ#windows-regarding-the-discontinuation-of-windows-uwp-support).
+Support for the UWP platform via react-native-star-io10 ended with V1.14.0, and the related code has been removed. Please refer to the details [here](https://github.com/star-micronics/react-native-star-io10/wiki/FAQ#windows-regarding-the-discontinuation-of-windows-uwp-support).
 
 We offer the [StarXpand SDK for Windows](https://github.com/star-micronics/Starlabs-StarXpand-SDK-Windows) as the new SDK for Windows. This SDK targets the Windows .NET (Desktop) platform.
+
+If you need to use react-native-star-io10 V1.13.0, which is the last version that supports Windows (UWP), please refer to the archived manual below.
+
+[Manual for V1.13.0](https://star-m.jp/products/s_print/archive/react-native-star-io10/manual/1_13_0/en/index.html)
 
 ## Installation
 
@@ -238,45 +240,6 @@ For pairing instructions, please refer to [here](https://star-m.jp/products/s_pr
 
 Please note that if the Android device is in silent mode, pairing may not be performed correctly. Please disable silent mode when performing pairing.
 
-### Windows
-
-- Add Capability in `Package.appxmanifest`.
-  - Bluetooth
-  - Internet (Client)
-  - Private Networks (Client & Server)
-- Add "Visual C++ 2015-2019 UWP Desktop Runtime for native apps" to the project "References".
-- When using a Bluetooth Low Energy printer with a Bluetooth dongle, please install the driver provided by the manufacturer of the dongle.
-
-#### When using mC-Connect Drawer (USB connection)
-
-Refer to the [sample project](example/windows/example/Package.appxmanifest) and add the following description to `Package.appxmanifest`.
-
-```
-  <Capabilities>
-    <!-- USB CDC Device -->
-    <DeviceCapability Name="serialcommunication">
-      <Device Id="any">
-        <Function Type="name:serialPort" />
-      </Device>
-    </DeviceCapability>
-  </Capabilities>
-```
-
-#### When using CD5 (USB connection)
-
-Refer to the [sample project](example/windows/example/Package.appxmanifest) and add the following description to `Package.appxmanifest`.
-
-```
-  <Capabilities>
-    <!-- HID Device -->
-    <DeviceCapability Name="humaninterfacedevice">
-      <Device Id="any">
-        <Function Type="usage:0001 0000" />
-      </Device>
-    </DeviceCapability>
-  </Capabilities>
-```
-
 ## Limitations
 
 ### When using Android device, an image specified by URL is sometimes printed in a low resolution
@@ -314,6 +277,8 @@ The sample code and printed result images are also [available here](example/samp
 #### 7. [Monitor printer](#MonitorPrinter)
 
 #### 8. [Update printer firmware](https://star-m.jp/products/s_print/sdk/react-native-star-io10/manual/en/fw-update.html)
+
+#### 9. [Get maintenance information](#Maintenance)
 
 <a id="GetPrinterStatus"></a>
 ### Get printer status
@@ -385,6 +350,43 @@ async monitor(): Promise<void> {
     }
 }
 ```
+
+<a id="Maintenance"></a>
+### Get maintenance information
+
+```typescript
+async getMaintenanceInformation(): Promise<void> {
+    // Specify your printer connection settings.
+    var settings = new StarConnectionSettings();
+    settings.interfaceType = InterfaceType.Lan;
+    settings.identifier = '00:11:62:00:00:00';
+    var printer = new StarPrinter(settings);
+
+    try {
+        // Connect to the printer.
+        await printer.open();
+
+        // Get maintenance information.
+        // Information not supported by the printer is omitted from the returned data.
+        var maintenance = printer.setting?.maintenance;
+        if (maintenance != undefined) {
+            var information = await maintenance.getInformation();
+            console.log(information);
+        }
+    }
+    catch(error) {
+        // Error.
+        console.log(error);
+    }
+    finally {
+        // Disconnect from the printer and dispose object.
+        await printer.close();
+        await printer.dispose();
+    }
+}
+```
+
+Resettable maintenance information values can be reset by the `resetInformation()` method. Please refer to the [sample code](example/samples/maintenance/App.tsx) and the [API reference](https://star-m.jp/products/s_print/sdk/react-native-star-io10/manual/en/api-reference/star-printer-setting-maintenance/index.html) for the usage.
 
 ## Copyright
 

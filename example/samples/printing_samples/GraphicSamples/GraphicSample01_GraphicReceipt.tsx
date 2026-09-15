@@ -1,9 +1,6 @@
 import { StarXpandCommand } from 'react-native-star-io10';
-import Canvas, { CanvasRenderingContext2D } from 'react-native-canvas';
+import Canvas, { type CanvasRenderingContext2D } from 'react-native-canvas';
 import React from 'react';
-
-/* This sample code only works on iOS and Android, not on Windows.
-This is because it uses react-native-canvas, which does not support Windows. */
 
 export default function App() {
     async function createGraphicReceipt(): Promise<string> {

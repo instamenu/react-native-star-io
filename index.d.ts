@@ -15,6 +15,8 @@ export { StarPrinterEmulation } from './src/StarPrinterEmulation';
 export { StarPrinter } from './src/StarPrinter';
 export { StarPrinterSetting } from './src/StarPrinterSetting';
 export { StarPrinterSettingFirmware } from './src/StarPrinterSettingFirmware';
+export { StarPrinterSettingMaintenance } from './src/StarPrinterSettingMaintenance';
+export { MaintenanceInformationType } from './src/MaintenanceInformationType';
 export { StarIO10DiagInfoUpload } from './src/StarIO10DiagInfoUpload';
 export { StarIO10Logger } from './src/StarIO10Logger';
 export { StarPrinterInformation } from './src/StarPrinterInformation';

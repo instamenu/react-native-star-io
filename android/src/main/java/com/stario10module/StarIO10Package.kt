@@ -23,6 +23,7 @@ class StarIO10Package : ReactPackage {
         modules.add(StarPrinterWrapper(reactContext))
         modules.add(StarPrinterSettingWrapper(reactContext))
         modules.add(StarPrinterSettingFirmwareWrapper(reactContext))
+        modules.add(StarPrinterSettingMaintenanceWrapper(reactContext))
         modules.add(StarIO10LoggerWrapper(reactContext))
         modules.add(StarIO10DiagInfoUploadWrapper(reactContext))
 

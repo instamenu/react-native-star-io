@@ -3,6 +3,7 @@ import { StarIO10ErrorFactory } from './StarIO10ErrorFactory';
 import { StarIO10UnknownError } from './StarIO10UnknownError';
 import { StarPrinterSetting } from './StarPrinterSetting';
 import { StarPrinterSettingFirmwareFactory } from './StarPrinterSettingFirmwareFactory';
+import { StarPrinterSettingMaintenanceFactory } from './StarPrinterSettingMaintenanceFactory';
 
 export class StarPrinterSettingFactory {
     static async create(nativeSetting: string, nativeStarPrinter: string | undefined): Promise<StarPrinterSetting | undefined> {
@@ -29,6 +30,14 @@ export class StarPrinterSettingFactory {
                     throw error;
                 }); 
             }
+
+            var nativeMaintenance = await NativeModules.StarPrinterSettingMaintenanceWrapper.init(nativeStarPrinter)
+            .catch(async (nativeError: any) => {
+                var error = await StarIO10ErrorFactory.create(nativeError.code);
+                throw error;
+            });
+
+            setting._maintenance = await StarPrinterSettingMaintenanceFactory.create(nativeMaintenance, nativeStarPrinter);
 
             setting._printerIdentifier = nativeStarPrinter;
         }
