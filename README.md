@@ -38,8 +38,8 @@ Please refer [here](DIAG_INFO.md) for details.
 
 #### Notes for Android 17
 
-- The Android device-control library included in react-native-star-io10 is configured with targetSdkVersion and compileSdkVersion set to 37 (Android 17).  
-Therefore, your application must also set compileSdkVersion to 37 or higher. In React Native v0.87.0 and later, compileSdkVersion is set to 37 by default, so no action is required. [Reference](example/android/build.gradle)
+- This fork lowers the bundled Android AAR's `minCompileSdk` metadata to 36 so apps using Android SDK 36 can compile. The vendor binary itself is unchanged. Printer behavior should be verified on hardware before release.
+- Apps using the upstream package need compileSdkVersion 37 or higher. In React Native v0.87.0 and later, compileSdkVersion is set to 37 by default. [Reference](example/android/build.gradle)
 - For apps targeting Android 17 or later, the ACCESS_LOCAL_NETWORK permission is now required for local network communication. [Local network access permission](https://developer.android.com/privacy-and-security/local-network-permission)  
 In apps like this sample app that request the `NEARBY_DEVICES` permission, please note that LAN communication may not work properly if the `NEARBY_DEVICES` permission is not granted.
 
